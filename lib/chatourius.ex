@@ -12,6 +12,8 @@ defmodule Chatourius do
       supervisor(Chatourius.Repo, []),
       # Start the endpoint when the application starts
       supervisor(Chatourius.Endpoint, []),
+      supervisor(Chatourius.Presence, []),
+
       # Start your own worker by calling: Chatourius.Worker.start_link(arg1, arg2, arg3)
       # worker(Chatourius.Worker, [arg1, arg2, arg3]),
     ]

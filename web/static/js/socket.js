@@ -3,7 +3,7 @@
 
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/my_app/endpoint.ex":
-import {Socket} from "phoenix"
+import {Socket, Presence} from "phoenix"
 
 let socket = new Socket("/socket", {params: {token: window.userToken}})
 
@@ -59,6 +59,23 @@ let message = $('#message-input')
 let nickName = "Nickname"
 let chatMessages = $("#chat-messages")
 
+let presences = {}
+let onlineUsers = $("#online-users")
+let listUsers = (user) => {
+  return {
+    user: user
+  }
+}
+
+let renderUsers = (presences) => {
+  console.log(presences);
+  onlineUsers.html(
+    Presence.list(presences, listUsers)
+    .map(presence => `<li>${presence.user}</li>`)
+    .join("")
+  )
+}
+
 message.focus()
 message.on('keypress', event => {
   if(event.keyCode == 13){
@@ -73,6 +90,16 @@ channel.on("message:new", payload => {
   template.html(`<b>${payload.user}</b>: ${payload.message}<br />`)
   chatMessages.append(template)
   chatMessages.scrollTop = chatMessages.scrollHight
+})
+
+channel.on("presence_state", state => {
+  presences = Presence.syncState(presences, state)
+  renderUsers(presences)
+})
+
+channel.on("presence_diff", diff => {
+  presences = Presence.syncDiff(presences, diff)
+  renderUsers(presences)
 })
 
 channel.join()
