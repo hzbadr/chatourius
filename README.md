@@ -1,5 +1,9 @@
 # Chatourius
 
+## implementing
+
+https://medium.com/@Stephanbv/elixir-phoenix-build-a-simple-chat-room-7f20ee8e8f9c
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
