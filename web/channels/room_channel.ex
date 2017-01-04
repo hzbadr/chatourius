@@ -5,7 +5,7 @@ defmodule Chatourius.RoomChannel do
   alias Chatourius.Repo
   alias Chatourius.User
 
-  def join("room", _payload, socket) do
+  def join(room, _payload, socket) do
     send(self(), :after_join)
     {:ok, socket}
   end

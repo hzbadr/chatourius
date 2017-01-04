@@ -2,7 +2,7 @@ defmodule Chatourius.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "room", Chatourius.RoomChannel
+  channel "room*", Chatourius.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

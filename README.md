@@ -1,8 +1,17 @@
 # Chatourius
 
-## implementing
+## Implementing
 
 https://medium.com/@Stephanbv/elixir-phoenix-build-a-simple-chat-room-7f20ee8e8f9c
+
+
+## Broadcast from iex
+
+http://stackoverflow.com/questions/30491166/phoenix-broadcasting-from-iex-console
+
+```
+  Chat.Endpoint.broadcast("rooms:lobby", "new:msg", %{message: "hello from the console"})
+```
 
 To start your Phoenix app:
 
