@@ -3,6 +3,7 @@ defmodule Chatourius.UserSocket do
 
   ## Channels
   channel "room*", Chatourius.RoomChannel
+  channel "driver:*", Chatourius.DriverChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
